@@ -7,85 +7,98 @@ constante_for = 4
 
 class Game:
     def __init__(self, player1Name, player2Name):
-        self.player1Name = player1Name
-        self.player2Name = player2Name
-        self.p1points = constante_zero
-        self.p2points = constante_zero
+        self.__player1Name = player1Name
+        self.__player2Name = player2Name
+        self.__p1points = constante_zero
+        self.__p2points = constante_zero
         
     def won_point(self, playerName):
         if playerName == self.player1Name:
             self.P1Score()
         else:
             self.P2Score()
+            
+    def get_Player1Name(self):
+        return self.__player1Name
+    
+    def get_Player2Name(self):
+        return self.__player2Name
+    
+    def get_p1points(self):
+        return self.__p1points
+    
+    def get_p2points(self):
+        return self.__p2points
+    
     
     def score(self):
         result = ""
-        if (self.p1points == self.p2points and self.p1points < constante_three):
-            if (self.p1points==constante_zero):
+        if (get_p1points() == get_p2points() and get_p1points() < constante_three):
+            if (get_p1points()==constante_zero):
                 result = "Love"
-            if (self.p1points==constante_one):
+            if (get_p1points()==constante_one):
                 result = "Fifteen"
-            if (self.p1points==constante_two):
+            if (get_p1points()==constante_two):
                 result = "Thirty"
             result += "-All"
-        if (self.p1points==self.p2points and self.p1points>constante_two):
+        if (get_p1points()==get_p2points() and get_p1points()>constante_two):
             result = "Deuce"
         
         P1res = ""
         P2res = ""
-        if (self.p1points > constante_zero and self.p2points==constante_zero):
-            if (self.p1points==constante_one):
+        if (get_p1points()> constante_zero and get_p2points()==constante_zero):
+            if (get_p1points()==constante_one):
                 P1res = "Fifteen"
-            if (self.p1points==constante_two):
+            if (get_p1points()==constante_two):
                 P1res = "Thirty"
-            if (self.p1points==constante_three):
+            if (get_p1points()==constante_three):
                 P1res = "Forty"
             
             P2res = "Love"
             result = P1res + "-" + P2res
-        if (self.p2points > constante_zero and self.p1points==constante_zero):
-            if (self.p2points==constante_one):
+        if (get_p2points() > constante_zero and get_p1points()==constante_zero):
+            if (get_p2points()==constante_one):
                 P2res = "Fifteen"
-            if (self.p2points==constante_two):
+            if (get_p2points()==constante_two):
                 P2res = "Thirty"
-            if (self.p2points==constante_three):
+            if (get_p2points()==constante_three):
                 P2res = "Forty"
             
             P1res = "Love"
             result = P1res + "-" + P2res
         
         
-        if (self.p1points>self.p2points and self.p1points < constante_for):
-            if (self.p1points==constante_two):
+        if (get_p1points()>get_p2points() and get_p1points() < constante_for):
+            if (get_p1points()==constante_two):
                 P1res="Thirty"
-            if (self.p1points==constante_three):
+            if (get_p1points()==constante_three):
                 P1res="Forty"
-            if (self.p2points==constante_one):
+            if (get_p2points()==constante_one):
                 P2res="Fifteen"
-            if (self.p2points==constante_two):
+            if (get_p2points()==constante_two):
                 P2res="Thirty"
             result = P1res + "-" + P2res
-        if (self.p2points>self.p1points and self.p2points < constante_for):
-            if (self.p2points==constante_two):
+        if (get_p2points()>get_p1points() and get_p2points() < constante_for):
+            if (get_p2points()==constante_two):
                 P2res="Thirty"
-            if (self.p2points==constante_three):
+            if (get_p2points()==constante_three):
                 P2res="Forty"
-            if (self.p1points==constante_one):
+            if (get_p1points()==constante_one):
                 P1res="Fifteen"
-            if (self.p1points==constante_two):
+            if (get_p1points()==constante_two):
                 P1res="Thirty"
             result = P1res + "-" + P2res
         
-        if (self.p1points > self.p2points and self.p2points >= constante_three):
-            result = "Advantage " + self.player1Name
+        if (get_p1points() > get_p2points() and get_p2points() >= constante_three):
+            result = "Advantage " + get_Player1Name()
         
-        if (self.p2points > self.p1points and self.p1points >= constante_three):
-            result = "Advantage " + self.player2Name
+        if (get_p2points() > get_p1points() and get_p1points() >= constante_three):
+            result = "Advantage " + get_Player2Name()
         
-        if (self.p1points>=constante_for and self.p2points>=constante_zero and (self.p1points-self.p2points)>=constante_two):
-            result = "Win for " + self.player1Name
-        if (self.p2points>=constante_for and self.p1points>=constante_zero and (self.p2points-self.p1points)>=constante_two):
-            result = "Win for " + self.player2Name
+        if (get_p1points()>=constante_for and get_p2points()>=constante_zero and (get_p1points()-get_p2points())>=constante_two):
+            result = "Win for " + get_Player1Name()
+        if (get_p2points()>=constante_for and get_p1points()>=constante_zero and (get_p2points()-get_p1points())>=constante_two):
+            result = "Win for " + get_Player2Name()
         return result
     
     def SetP1Score(self, number):
@@ -97,8 +110,8 @@ class Game:
             self.P2Score()
     
     def P1Score(self):
-        self.p1points +=constante_one
+        get_p1points() +=constante_one
     
     
     def P2Score(self):
-        self.p2points +=constante_one
+        get_p2points() +=constante_one
